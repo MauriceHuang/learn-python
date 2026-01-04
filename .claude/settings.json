@@ -1,0 +1,15 @@
+{
+  "hooks": {
+    "SessionStart": [
+      {
+        "matcher": "",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "if [[ -f \"${CLAUDE_PROJECT_DIR}/requirements.txt\" ]]; then echo 'Installing dependencies with uv...' && uv pip install -r \"${CLAUDE_PROJECT_DIR}/requirements.txt\" && echo 'Dependencies installed successfully'; else echo 'No requirements.txt found'; fi"
+          }
+        ]
+      }
+    ]
+  }
+}
