@@ -6,7 +6,7 @@
         "hooks": [
           {
             "type": "command",
-            "command": "cd \"${CLAUDE_PROJECT_DIR:-.}\" && if [[ -f requirements.txt ]]; then if [[ ! -d .venv ]]; then echo 'Creating virtual environment...' && uv venv; fi && echo 'Installing dependencies...' && uv pip install -r requirements.txt && echo 'Done! Use: uv run python <script>'; else echo 'No requirements.txt found'; fi"
+            "command": "PROJECT_DIR=\"${CLAUDE_PROJECT_DIR:-$(git rev-parse --show-toplevel 2>/dev/null || pwd)}\" && cd \"$PROJECT_DIR\" && if [[ -f requirements.txt ]]; then if [[ ! -d .venv ]]; then echo 'Creating virtual environment...' && uv venv; fi && echo 'Installing dependencies...' && uv pip install -r requirements.txt && echo 'Done! Use: uv run python <script>'; else echo 'No requirements.txt found'; fi"
           }
         ]
       }
